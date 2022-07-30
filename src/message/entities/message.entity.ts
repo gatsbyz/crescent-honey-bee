@@ -10,8 +10,8 @@ export class Message {
   content: string;
 
   @ApiProperty({ description: 'Sender of the message' })
-  sender_id: string;
+  senderId: string;
 
   @ApiProperty({ description: 'Created time of the message' })
-  created_at: Date;
+  createdAt: Date;
 }

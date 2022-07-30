@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Query } from '@nestjs/common';
 import {
   ApiBearerAuth,
   ApiOperation,
@@ -25,15 +25,15 @@ export class MessageController {
   @Get(':id')
   @ApiResponse({
     status: 200,
-    description: 'The found record',
+    description: 'The found message',
     type: Message,
   })
-  findOne(@Param('id') id: string): Message {
-    return this.messageService.findOne(+id);
+  findOne(@Param('id') id: string): Promise<Message> {
+    return this.messageService.findOne(id);
   }
 
   @Get()
-  getHello(): string {
-    return this.messageService.getHello();
+  findAll(): Promise<Message[]> {
+    return this.messageService.findAll();
   }
 }

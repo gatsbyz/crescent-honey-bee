@@ -7,8 +7,8 @@ export class CreateMessageDto {
   readonly content: string;
 
   @IsString()
-  readonly sender_id: string;
+  readonly senderId: string;
 
   @IsDate()
-  readonly created_at: Date;
+  readonly createdAt: Date;
 }
