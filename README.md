@@ -24,7 +24,7 @@
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+Message API built on [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
 ## Installation
 
@@ -38,11 +38,6 @@ $ npm install
 # development
 $ npm run start
 
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
 ```
 
 ## Test
@@ -58,16 +53,19 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
-## Support
+## Specs
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+```
+POST /message
+- Send messages to a list of recipients. your API should allow users to designate a list of recipients along with message content.
 
-## Stay in touch
+GET /message/:id
+- Query and retrieve that message
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+GET /recipient/:messageId
+- Query list of recipients in the future.
 
-## License
+```
 
-Nest is [MIT licensed](LICENSE).
+## Swagger UI
+/api
