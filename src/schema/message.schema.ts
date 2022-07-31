@@ -5,16 +5,10 @@ export type MessageDocument = Message & Document;
 
 @Schema()
 export class Message {
-  @Prop({ required: true })
-  messageId: string;
-
-  @Prop({ required: true })
+  @Prop({ type: String, required: true })
   content: string;
 
-  @Prop({ required: true })
-  senderId: string;
-
-  @Prop({ required: true })
+  @Prop({ default: Date.now })
   createdAt: Date;
 }
 
