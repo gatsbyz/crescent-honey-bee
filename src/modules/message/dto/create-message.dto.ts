@@ -1,11 +1,12 @@
-import { IsArray, IsNotEmpty, IsString } from 'class-validator';
+import { ArrayNotEmpty, IsArray, IsNotEmpty, IsString } from 'class-validator';
 
 export class CreateMessageDto {
   @IsString()
   @IsNotEmpty()
-  readonly content: string;
+  content: string;
 
   @IsArray()
-  @IsNotEmpty()
-  readonly recipientIds: string[];
+  @ArrayNotEmpty()
+  @IsString({ each: true })
+  recipientIds: string[];
 }
