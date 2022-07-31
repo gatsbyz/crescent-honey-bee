@@ -53,19 +53,22 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
-## Specs
+## API
 
+`POST /message`
 ```
-POST /message
-- Send messages to a list of recipients. your API should allow users to designate a list of recipients along with message content.
-
-GET /message/:id
-- Query and retrieve that message
-
-GET /recipient/:messageId
-- Query list of recipients in the future.
-
+Send messages to a list of recipients. your API should allow users to designate a list of recipients along with message content.
 ```
+`GET /message/:id`
+```
+Query and retrieve that message
+```
+
+`GET /recipient/:messageId`
+```
+Query list of recipients in the future.
+```
+
 
 ## Swagger UI
-/api
+`/api`
