@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import mongoose from 'mongoose';
+import { Types } from 'mongoose';
 import { MessageRepository } from '../../repositories/message.repository';
 import { Message } from '../../schema/message.schema';
 import { RelationService } from '../relation/relation.service';
@@ -12,7 +12,7 @@ export class MessageService {
     private readonly relationService: RelationService,
   ) {}
 
-  async create(createMessageDto: CreateMessageDto): Promise<Message> {
+  async create(createMessageDto: CreateMessageDto) {
     const createdMessage = await this.messageRepository.createMessage(
       createMessageDto,
     );
@@ -26,7 +26,7 @@ export class MessageService {
     return createdMessage.save();
   }
 
-  async findOne(id: mongoose.Types.ObjectId): Promise<Message> {
+  async findOne(id: Types.ObjectId): Promise<Message> {
     return await this.messageRepository.getMessageById(id);
   }
 

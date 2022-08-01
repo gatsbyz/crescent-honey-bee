@@ -1,4 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
+import { CreateMessageDto } from './dto/create-message.dto';
 import { MessageController } from './message.controller';
 import { MessageService } from './message.service';
 
@@ -14,9 +15,14 @@ describe('MessageController', () => {
     messageController = app.get<MessageController>(MessageController);
   });
 
-  describe('root', () => {
-    it('should return "Hello World!"', () => {
-      // expect(messageController.getHello()).toBe('Hello World!');
+  describe('create message', () => {
+    it('should return new message"', async () => {
+      const testMessage: CreateMessageDto = {
+        content: 'test',
+        recipientIds: ['recipientId1', 'recipientId2'],
+      };
+      const response = await messageController.create(testMessage);
+      expect(response.content).toBe(testMessage.content);
     });
   });
 });

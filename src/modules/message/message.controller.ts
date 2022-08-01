@@ -1,13 +1,11 @@
 import {
+  BadRequestException,
   Body,
   Controller,
   Get,
-  HttpStatus,
   Param,
   Post,
-  Res,
 } from '@nestjs/common';
-import { Response } from 'express';
 import { MessageService } from './message.service';
 import { CreateMessageDto } from './dto/create-message.dto';
 import { ApiOperation, ApiParam, ApiTags } from '@nestjs/swagger';
@@ -21,12 +19,8 @@ export class MessageController {
 
   @ApiOperation({ summary: 'Create message' })
   @Post()
-  async create(
-    @Body() createMessageDto: CreateMessageDto,
-    @Res() res: Response,
-  ) {
-    const newMessage = await this.messageService.create(createMessageDto);
-    return res.status(HttpStatus.CREATED).send(newMessage);
+  async create(@Body() createMessageDto: CreateMessageDto) {
+    return await this.messageService.create(createMessageDto);
   }
 
   @Get(':id')
@@ -36,18 +30,16 @@ export class MessageController {
     required: true,
     description: 'Message ID',
   })
-  async findOne(@Param('id') id: string, @Res() res: Response) {
+  async findOne(@Param('id') id: string) {
     if (!isValidObjectId(id)) {
-      return res.status(HttpStatus.BAD_REQUEST).send('Invalid ID');
+      throw new BadRequestException('Invalid ID');
     }
-    const message = await this.messageService.findOne(toObjectId(id));
-    return res.status(HttpStatus.OK).send(message);
+    return await this.messageService.findOne(toObjectId(id));
   }
 
   @ApiOperation({ summary: 'Get all messages' })
   @Get()
-  async findAll(@Res() res: Response) {
-    const messages = await this.messageService.findAll();
-    return res.status(HttpStatus.OK).send(messages);
+  async findAll() {
+    return await this.messageService.findAll();
   }
 }
